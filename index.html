@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Figlet JS Demo</title>
+
+	<script src="./jquery-3.1.1.min.js"></script>
+	<script src="./figlet.js"></script>
+	<script src="./jquery.figlet.js"></script>
+	<script>
+  function wait(ms) {
+    var start = Date.now(),
+        now = start;
+    while (now - start < ms) {
+      now = Date.now();
+    }
+}
+
+	$(function() {
+    $("#gen").click(function(){
+      var txt  = $("#txt").val(),
+          inl  = $("#inline").val(),
+          outl = $("#outline").val();
+
+      Figlet.write(txt, "banner", function(str) {
+        r2 = str.replace(/#/g, inl).replace(/ /g, outl);
+        $("#out").html(r2);
+    	});
+
+
+    });
+	});
+
+
+	</script>
+  <style>
+    body, html {
+      font-family: sans-serif;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <p class="" id="fg-buffer"></p>
+  <h1>yo generator</h1>
+  <input type="text" id="txt" /> Text<br>
+  <input type="text" id="inline" /> Inline<br>
+  <input type="text" id="outline" /> Outline<br>
+  <button id="gen">Generate</button>
+  <br><br>
+
+  <pre id="out">
+  </pre>
+
+</body>
+</html>
